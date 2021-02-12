@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">GithubRepo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forks">Forks</string>
+    <string name="url">url</string>
+    <string name="stars">stars</string>
+    <string name="watchers">watchers</string>
+    <string name="repository_name">Repository name:</string>
+    <string name="user">User</string>
+    <string name="read_me">Read Me</string>
+    <string name="error_retrieving_data">Error retrieving data</string>
+    <string name="login">login</string>
+    <string name="position">position</string>
 </resources>

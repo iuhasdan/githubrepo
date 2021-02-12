@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.githubrepo.R
 import com.example.githubrepo.adapter.RecyclerViewAdapter
 import com.example.githubrepo.data.Items
+import com.example.githubrepo.utilities.DecodeText
 import com.example.githubrepo.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_repo_info.view.*
 import java.io.UnsupportedEncodingException
@@ -60,9 +61,14 @@ class RepoInfoFragment : Fragment(), RecyclerViewAdapter.OnItemClickListener {
 
         viewModel.getContentObserver().observe(this, {
             if (it != null) {
-                view?.read_me_tv?.text = decodeString((it.content))
+                val decoder = DecodeText()
+                view?.read_me_tv?.text = decoder.decodeString((it.content))
             } else {
-                Toast.makeText(activity, getString(R.string.error_retrieving_data), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    activity,
+                    getString(R.string.error_retrieving_data),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
@@ -87,18 +93,6 @@ class RepoInfoFragment : Fragment(), RecyclerViewAdapter.OnItemClickListener {
             fragment.arguments = args
 
             return fragment
-        }
-    }
-
-    private fun decodeString(encoded: String): String {
-        val dataDec = Base64.decode(encoded, Base64.DEFAULT)
-        var decodedString = ""
-        try {
-            decodedString = String(dataDec, Charset.forName("UTF-8"))
-        } catch (e: UnsupportedEncodingException) {
-            e.printStackTrace()
-        } finally {
-            return decodedString
         }
     }
 
